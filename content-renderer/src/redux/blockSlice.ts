@@ -5,7 +5,7 @@ import { getBlock } from '@/utils/apis';
 import { stubMediaType } from '@/utils/stub';
 
 // For used for mocking other return types from API
-interface blockDataType extends Object {
+interface blockDataType {
   metadata: { content_type: string };
   response: { url: string };
 }
@@ -69,7 +69,7 @@ export const BlockSlice = createSlice({
   },
   extraReducers(builder) {
     builder
-      .addCase(fetchBlock.pending, (state, _): void => {
+      .addCase(fetchBlock.pending, (state): void => {
         state.status = 'loading';
         state.showResponse = false;
         state.mediaStatus = 'idle';

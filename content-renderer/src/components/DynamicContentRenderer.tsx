@@ -19,7 +19,7 @@ import {
 
 interface PropsType {
   block: BlockStateType;
-  handleMediaLoad: Function;
+  handleMediaLoad: (status: string) => void;
 }
 
 const titleMap = {

@@ -4,7 +4,17 @@ import axios from 'axios';
 import { render, screen } from '@testing-library/react';
 import { DynamicContentRenderer } from '@/components';
 
-let responseData: any = {
+interface ResponseData {
+  index_id: string;
+  created_at: string;
+  run_id: string;
+  data: {
+    metadata: { content_type: string };
+    response: { url: string };
+  }[];
+}
+
+let responseData: ResponseData = {
   index_id: '',
   created_at: '',
   run_id: '',
@@ -43,10 +53,11 @@ describe('DynamicContentRenderer', () => {
           ...responseData, // index_id, created_at, run_id, data
           workbookId: workbookId,
           status: 'succeeded',
+          mediaStatus: 'succeeded',
           error: null,
           showResponse: false,
         }}
-        handleMediaLoad={() => {}}
+        handleMediaLoad={(): void => {}}
       />,
     );
 
@@ -75,7 +86,7 @@ describe('DynamicContentRenderer', () => {
           error: null,
           showResponse: false,
         }}
-        handleMediaLoad={() => {}}
+        handleMediaLoad={(): void => {}}
       />,
     );
 
@@ -101,7 +112,7 @@ describe('DynamicContentRenderer', () => {
           error: null,
           showResponse: false,
         }}
-        handleMediaLoad={() => {}}
+        handleMediaLoad={(): void => {}}
       />,
     );
 
@@ -130,7 +141,7 @@ describe('DynamicContentRenderer', () => {
           error: null,
           showResponse: false,
         }}
-        handleMediaLoad={() => {}}
+        handleMediaLoad={(): void => {}}
       />,
     );
 
